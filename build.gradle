@@ -70,3 +70,24 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
+
+group = 'nl.eveoh.office365'
+version = '0.0.1-SNAPSHOT'
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "https://maven.eveoh.nl/content/repositories/snapshots"
+            if (project.hasProperty('mavenUser')) {
+                credentials {
+                    username mavenUser
+                    password mavenPass
+                }
+            }
+        }
+    }
+}
